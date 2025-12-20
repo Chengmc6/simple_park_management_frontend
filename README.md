@@ -1,48 +1,85 @@
-# vue-park-front
+# 簡易駐車場管理フロントエンド
 
-This template should help get you started developing with Vue 3 in Vite.
+## 概要
 
-## Recommended IDE Setup
+本プロジェクトはシンプルな駐車場管理システムのフロントエンド実装です。Vue 3 と Vite を用いて構築されており、ユーザー認証、車両の入出庫操作、利用履歴表示などの基本的な管理機能を提供します。
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 主な機能
 
-## Recommended Browser Setup
+- ユーザー認証（ログイン / 登録）
+- ダッシュボード表示
+- 車両の入庫/出庫操作
+- 車両検索・一覧表示
+- 利用履歴の表示
+- ユーザー管理
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 技術スタック
 
-## Type Support for `.vue` Imports in TS
+- フロントエンド: Vue 3
+- ビルドツール: Vite
+- 言語: TypeScript
+- 状態管理: Pinia（想定）
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 環境要件
 
-## Customize configuration
+- Node.js 16 以上を推奨
+- npm または yarn
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## ローカル開発の始め方
 
-## Project Setup
+依存をインストールして開発サーバを起動します。
 
-```sh
+```bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+ビルドとプレビュー:
 
-```sh
+```bash
 npm run build
+npm run preview
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## プロジェクト構成（概要）
 
-```sh
-npm run lint
-```
+- `index.html`, `vite.config.ts`, `package.json`, `tsconfig.json` など（ルート）
+- `src/`
+  - `main.ts` / `App.vue` — エントリポイント
+  - `router/` — ルーティング定義（`src/router/index.ts`）
+  - `stores/` — ストア（`src/stores/auth.ts`, `src/stores/carStore.ts`, `src/stores/userStore.ts`）
+  - `utils/` — ユーティリティ（`src/utils/dateFormatter.ts`, `src/utils/jwt.ts`, `src/utils/request.ts`）
+  - `views/` — 画面コンポーネント
+    - `CarOperationView.vue` — 車両操作画面
+    - `CarQueryView.vue` — 車両検索画面
+    - `DashboardLayout.vue` — ダッシュボードレイアウト
+    - `LoginView.vue` / `RegisterView.vue` — 認証画面
+    - `UsageHistoryView.vue` — 利用履歴画面
+    - `UserView.vue` — ユーザー管理画面
+
+詳細は各ファイルを参照してください：
+
+- [src/router/index.ts](src/router/index.ts)
+- [src/stores/auth.ts](src/stores/auth.ts)
+- [src/utils/request.ts](src/utils/request.ts)
+
+## 環境変数
+
+バックエンド API のベース URL やその他機密情報は、`.env` または Vite の環境変数（例: `VITE_API_BASE_URL`）で管理してください。`src/utils/request.ts` に API 呼び出しの集中ロジックがあるため、ここを参照して設定を調整してください。
+
+## 開発のヒント
+
+- API 呼び出しは `src/utils/request.ts` に集約すると保守が容易です。
+- ストアは `src/stores/` にまとめ、UI からの操作をここで扱うと状態管理が分かりやすくなります。
+
+## 貢献
+
+バグ修正や機能追加は歓迎します。Pull Request を作成する際は、変更内容を簡潔に記述してください。
+
+## ライセンス
+
+リポジトリのルートに `LICENSE` がない場合は、`package.json` を参照するか、別途ライセンスを追加してください。
+
+---
+
+作業環境やトーン調整（技術的／カジュアル／商用向け）など希望があれば教えてください。
