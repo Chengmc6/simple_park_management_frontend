@@ -138,7 +138,7 @@ const cancelPasswordChange = () => {
         <el-button
           v-if="!showPasswordForm"
           type="primary"
-          size="medium"
+          size="default"
           icon="el-icon-lock"
           @click="showPasswordForm = true"
         >
