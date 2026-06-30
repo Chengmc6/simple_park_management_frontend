@@ -1,3 +1,4 @@
+# ===== 第一阶段：Node.js 编译打包 =====
 # 1. 指定基础环境（尽量选择体积小的 alpine 或 slim 版本）
 FROM node:24-alpine AS build
 # 2. 创建并切换到工作目录
@@ -11,6 +12,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+# ===== 第二阶段：Nginx 运行托管 =====
 # 5. 使用 Nginx 作为生产环境的 Web 服务器
 FROM nginx:alpine
 # 6. 复制构建好的文件到 Nginx 的默认目录
